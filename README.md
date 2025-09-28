@@ -2,10 +2,10 @@
 
 > **A comprehensive, production-ready toll management platform that aggregates multiple state and regional agencies into a unified system.**
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/nationwide-toll-hub)
-[![Test Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen.svg)](https://github.com/nationwide-toll-hub)
-[![Security](https://img.shields.io/badge/security-A%2B-brightgreen.svg)](https://github.com/nationwide-toll-hub)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nationwide-toll-hub)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/parth3690/nationwide-toll-hub)
+[![Test Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen.svg)](https://github.com/parth3690/nationwide-toll-hub)
+[![Security](https://img.shields.io/badge/security-A%2B-brightgreen.svg)](https://github.com/parth3690/nationwide-toll-hub)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/parth3690/nationwide-toll-hub)
 
 ## 📋 Table of Contents
 
@@ -162,7 +162,7 @@ The Nationwide Toll Hub is a next-generation toll management platform designed t
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/nationwide-toll-hub.git
+   git clone https://github.com/parth3690/nationwide-toll-hub.git
    cd nationwide-toll-hub
    ```
 
@@ -458,8 +458,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 - **Documentation**: [docs.nationwidetollhub.com](https://docs.nationwidetollhub.com)
-- **Issues**: [GitHub Issues](https://github.com/nationwide-toll-hub/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/nationwide-toll-hub/discussions)
+- **Issues**: [GitHub Issues](https://github.com/parth3690/nationwide-toll-hub/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/parth3690/nationwide-toll-hub/discussions)
 - **Email**: support@nationwidetollhub.com
 
 ## 🏆 Acknowledgments

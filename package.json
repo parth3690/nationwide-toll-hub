@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Unified toll management platform aggregating multiple state and regional agencies",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parth3690/nationwide-toll-hub.git"
+  },
+  "homepage": "https://github.com/parth3690/nationwide-toll-hub#readme",
+  "bugs": {
+    "url": "https://github.com/parth3690/nationwide-toll-hub/issues"
+  },
   "workspaces": [
     "apps/*",
     "packages/*",
