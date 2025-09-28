@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nationwide Toll Hub - Premium UX/UI Redesign</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Design System - Light Mode */
+            --primary-100: #E0F2FE;
+            --primary-200: #BAE6FD;
+            --primary-300: #7DD3FC;
+            --primary-400: #38BDF8;
+            --primary-500: #0EA5E9;
+            --primary-600: #0284C7;
+            --primary-700: #0369A1;
+            
+            --neutral-50: #FAFAFA;
+            --neutral-100: #F4F4F5;
+            --neutral-200: #E4E4E7;
+            --neutral-300: #D4D4D8;
+            --neutral-400: #A1A1AA;
+            --neutral-500: #71717A;
+            --neutral-600: #52525B;
+            --neutral-700: #3F3F46;
+            --neutral-800: #27272A;
+            --neutral-900: #18181B;
+            
+            --success-100: #D1FAE5;
+            --success-500: #10B981;
+            --success-700: #047857;
+            
+            --warning-100: #FEF3C7;
+            --warning-500: #F59E0B;
+            --warning-700: #B45309;
+            
+            --danger-100: #FEE2E2;
+            --danger-500: #EF4444;
+            --danger-700: #B91C1C;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 100%);
+            color: var(--neutral-900);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        
+        /* Typography System */
+        .heading-1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-500) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        
+        .heading-2 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--neutral-900);
+            margin-bottom: 24px;
+        }
+        
+        .heading-3 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--neutral-800);
+            margin-bottom: 16px;
+        }
+        
+        .body-large {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--neutral-600);
+        }
+        
+        /* Section Headers */
+        .section {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-100);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--neutral-100);
+        }
+        
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-100);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        /* Design Cards */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        
+        .design-card {
+            background: var(--neutral-50);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-200);
+        }
+        
+        .design-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-400), var(--primary-600));
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+        
+        .design-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Phone Mockup */
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: #1C1C1E;
+            border-radius: 40px;
+            padding: 12px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 
+                0 50px 100px -20px rgba(0, 0, 0, 0.25),
+                0 30px 60px -30px rgba(0, 0, 0, 0.3),
+                inset 0 -2px 6px 0 rgba(0, 0, 0, 0.35);
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-bar-time {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .status-bar-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 83px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 0.5px solid var(--neutral-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-bottom: 20px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--neutral-400);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+        }
+        
+        .nav-item.active {
+            color: var(--primary-600);
+            background: var(--primary-100);
+        }
+        
+        .nav-item-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-item-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        
+        /* Screen Content */
+        .screen-content {
+            height: calc(100% - 44px - 83px);
+            overflow-y: auto;
+            padding: 24px;
+            position: relative;
+        }
+        
+        /* Components */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            box-shadow: 
+                0 4px 14px 0 rgba(14, 165, 233, 0.25),
+                0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 7px 20px 0 rgba(14, 165, 233, 0.35),
+                0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-secondary {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--neutral-200);
+            border-color: var(--neutral-300);
+        }
+        
+        /* Cards */
+        .info-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-base);
+        }
+        
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+            border-color: var(--primary-200);
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-50), white);
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--primary-100);
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-700);
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--neutral-500);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            transition: all var(--transition-fast);
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        
+        .badge-success {
+            background: var(--success-100);
+            color: var(--success-700);
+        }
+        
+        .badge-warning {
+            background: var(--warning-100);
+            color: var(--warning-700);
+        }
+        
+        .badge-danger {
+            background: var(--danger-100);
+            color: var(--danger-700);
+        }
+        
+        /* Desktop Screens */
+        .desktop-frame {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .desktop-nav {
+            background: linear-gradient(180deg, var(--neutral-900), var(--neutral-800));
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .desktop-nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .desktop-nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+        }
+        
+        .desktop-nav-link:hover,
+        .desktop-nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Persona Cards */
+        .persona-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--primary-50), white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--primary-100);
+            margin-bottom: 24px;
+        }
+        
+        .persona-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+        
+        .persona-details h4 {
+            color: var(--neutral-900);
+            margin-bottom: 4px;
+        }
+        
+        .persona-details p {
+            color: var(--neutral-600);
+            margin-bottom: 12px;
+        }
+        
+        .persona-traits {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .trait-badge {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: var(--primary-700);
+            border: 1px solid var(--primary-200);
+        }
+        
+        /* Journey Map */
+        .journey-map {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 32px 0;
+        }
+        
+        .journey-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .journey-step-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 12px;
+            background: white;
+            border: 3px solid var(--primary-500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+        }
+        
+        .journey-step.completed .journey-step-icon {
+            background: var(--primary-500);
+            color: white;
+        }
+        
+        .journey-connector {
+            position: absolute;
+            top: 48px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--neutral-200);
+            z-index: 1;
+        }
+        
+        .journey-connector-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-400), var(--primary-600));
+            width: 40%;
+            transition: width var(--transition-slow);
+        }
+        
+        /* Accessibility Features */
+        .a11y-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+        }
+        
+        .a11y-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-100);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-600);
+        }
+        
+        /* Animation Classes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeIn var(--transition-slow) ease-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: var(--neutral-900);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition-base);
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Responsive Grid */
+        @media (max-width: 768px) {
+            .design-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 16px;
+            }
+            
+            .section {
+                padding: 24px;
+            }
+            
+            .journey-map {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .journey-connector {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="animate-in">
+            <h1 class="heading-1">🚗 Nationwide Toll Hub</h1>
+            <p class="body-large">Premium UX/UI Design System • Enterprise-Grade Toll Management Platform</p>
+        </div>
+        
+        <!-- User Personas Section -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">👥</div>
+                <div>
+                    <h2 class="heading-2">User Personas</h2>
+                    <p>Understanding our users through research-driven personas</p>
+                </div>
+            </div>
+            
+            <div class="persona-card">
+                <div class="persona-avatar">🚙</div>
+                <div class="persona-details">
+                    <h4>Sarah Chen - Daily Commuter</h4>
+                    <p>Age: 34 • Tech Product Manager • San Francisco, CA</p>
+                    <div class="persona-traits">
+                        <span class="trait-badge">Time-conscious</span>
+                        <span class="trait-badge">Mobile-first</span>
+                        <span class="trait-badge">Autopay preferred</span>
+                        <span class="trait-badge">Expense tracking</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="persona-card">
+                <div class="persona-avatar">🚚</div>
+                <div class="persona-details">
+                    <h4>Mike Rodriguez - Fleet Manager</h4>
+                    <p>Age: 45 • Logistics Company Owner • Dallas, TX</p>
+                    <div class="persona-traits">
+                        <span class="trait-badge">Bulk management</span>
+                        <span class="trait-badge">Invoice processing</span>
+                        <span class="trait-badge">Multi-vehicle</span>
+                        <span class="trait-badge">Analytics focused</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="persona-card">
+                <div class="persona-avatar">✈️</div>
+                <div class="persona-details">
+                    <h4>Emma Williams - Occasional Traveler</h4>
+                    <p>Age: 28 • Marketing Consultant • Chicago, IL</p>
+                    <div class="persona-traits">
+                        <span class="trait-badge">Quick payment</span>
+                        <span class="trait-badge">Guest checkout</span>
+                        <span class="trait-badge">Clear pricing</span>
+                        <span class="trait-badge">Rental car user</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- User Journey Map -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">🗺️</div>
+                <div>
+                    <h2 class="heading-2">User Journey Map</h2>
+                    <p>End-to-end experience flow optimized for speed and clarity</p>
+                </div>
+            </div>
+            
+            <div class="journey-map">
+                <div class="journey-connector">
+                    <div class="journey-connector-progress"></div>
+                </div>
+                
+                <div class="journey-step completed">
+                    <div class="journey-step-icon">🔍</div>
+                    <h4>Discover</h4>
+                    <p>Find toll event</p>
+                </div>
+                
+                <div class="journey-step completed">
+                    <div class="journey-step-icon">📱</div>
+                    <h4>Access</h4>
+                    <p>Quick login</p>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="journey-step-icon">👁️</div>
+                    <h4>Review</h4>
+                    <p>Check details</p>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="journey-step-icon">💳</div>
+                    <h4>Pay</h4>
+                    <p>Secure payment</p>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="journey-step-icon">✅</div>
+                    <h4>Confirm</h4>
+                    <p>Get receipt</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mobile Wireframes -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div>
+                    <h2 class="heading-2">Mobile Experience (iOS/Android)</h2>
+                    <p>Native app design following iOS HIG and Material Design 3 principles</p>
+                </div>
+            </div>
+            
+            <div class="design-grid">
+                <!-- Login Screen -->
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar">
+                            <span class="status-bar-time">9:41</span>
+                            <div class="status-bar-icons">
+                                <span>📶</span>
+                                <span>📶</span>
+                                <span>🔋</span>
+                            </div>
+                        </div>
+                        
+                        <div class="screen-content">
+                            <div style="text-align: center; padding-top: 60px;">
+                                <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, var(--primary-500), var(--primary-700)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white;">🚗</div>
+                                <h3 class="heading-3">Welcome Back</h3>
+                                <p style="color: var(--neutral-500); margin-bottom: 48px;">Sign in to manage your tolls</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" placeholder="you@example.com" value="sarah@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-input" placeholder="••••••••" value="••••••••">
+                            </div>
+                            
+                            <button class="btn-primary" style="width: 100%; margin-bottom: 16px;">
+                                Sign In
+                            </button>
+                            
+                            <div style="display: flex; align-items: center; gap: 16px; margin: 24px 0;">
+                                <div style="flex: 1; height: 1px; background: var(--neutral-200);"></div>
+                                <span style="color: var(--neutral-400); font-size: 14px;">or continue with</span>
+                                <div style="flex: 1; height: 1px; background: var(--neutral-200);"></div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                <button class="btn-secondary" style="padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    🍎 Face ID
+                                </button>
+                                <button class="btn-secondary" style="padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    🔑 Passkey
+                                </button>
+                            </div>
+                            
+                            <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--neutral-500);">
+                                Don't have an account? <a href="#" style="color: var(--primary-600); text-decoration: none; font-weight: 600;">Sign Up</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard -->
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar">
+                            <span class="status-bar-time">9:41</span>
+                            <div class="status-bar-icons">
+                                <span>📶</span>
+                                <span>📶</span>
+                                <span>🔋</span>
+                            </div>
+                        </div>
+                        
+                        <div class="screen-content">
+                            <div style="margin-bottom: 24px;">
+                                <p style="color: var(--neutral-500); font-size: 14px;">Good morning</p>
+                                <h3 class="heading-3">Sarah Chen</h3>
+                            </div>
+                            
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Tolls</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">$89</div>
+                                    <div class="stat-label">Total</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">$24</div>
+                                    <div class="stat-label">Unpaid</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                <h4 style="color: var(--neutral-800);">Recent Activity</h4>
+                                <a href="#" style="color: var(--primary-600); text-decoration: none; font-size: 14px; font-weight: 600;">See All →</a>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h5 style="color: var(--neutral-900); margin-bottom: 4px;">Golden Gate Bridge</h5>
+                                        <p style="color: var(--neutral-500); font-size: 14px;">Today at 8:45 AM</p>
+                                        <p style="color: var(--neutral-700); font-weight: 600; margin-top: 8px;">$8.75</p>
+                                    </div>
+                                    <span class="badge badge-success">✓ Paid</span>
+                                </div>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h5 style="color: var(--neutral-900); margin-bottom: 4px;">Verrazzano Bridge</h5>
+                                        <p style="color: var(--neutral-500); font-size: 14px;">Yesterday at 6:30 PM</p>
+                                        <p style="color: var(--neutral-700); font-weight: 600; margin-top: 8px;">$19.00</p>
+                                    </div>
+                                    <span class="badge badge-danger">• Unpaid</span>
+                                </div>
+                                <button class="btn-primary" style="width: 100%; margin-top: 12px; padding: 12px;">
+                                    Pay Now →
+                                </button>
+                            </div>
+                            
+                            <!-- Quick Actions -->
+                            <div style="background: linear-gradient(135deg, var(--primary-50), white); padding: 20px; border-radius: var(--radius-lg); margin-top: 24px; border: 1px solid var(--primary-100);">
+                                <h4 style="color: var(--neutral-800); margin-bottom: 12px;">Quick Actions</h4>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                                    <button style="background: white; border: 1px solid var(--neutral-200); padding: 16px 8px; border-radius: var(--radius-md); text-align: center; cursor: pointer; transition: all var(--transition-base);">
+                                        <div style="font-size: 24px; margin-bottom: 4px;">📊</div>
+                                        <div style="font-size: 12px; color: var(--neutral-600);">Analytics</div>
+                                    </button>
+                                    <button style="background: white; border: 1px solid var(--neutral-200); padding: 16px 8px; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+                                        <div style="font-size: 24px; margin-bottom: 4px;">🚗</div>
+                                        <div style="font-size: 12px; color: var(--neutral-600);">Vehicles</div>
+                                    </button>
+                                    <button style="background: white; border: 1px solid var(--neutral-200); padding: 16px 8px; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+                                        <div style="font-size: 24px; margin-bottom: 4px;">📄</div>
+                                        <div style="font-size: 12px; color: var(--neutral-600);">Receipts</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <nav class="nav-bar">
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">🏠</div>
+                                <span class="nav-item-label">Home</span>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">🚗</div>
+                                <span class="nav-item-label">Tolls</span>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">💳</div>
+                                <span class="nav-item-label">Pay</span>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📊</div>
+                                <span class="nav-item-label">Reports</span>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">👤</div>
+                                <span class="nav-item-label">Profile</span>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Payment Screen -->
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar">
+                            <span class="status-bar-time">9:41</span>
+                            <div class="status-bar-icons">
+                                <span>📶</span>
+                                <span>📶</span>
+                                <span>🔋</span>
+                            </div>
+                        </div>
+                        
+                        <div class="screen-content">
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                                <button style="background: none; border: none; font-size: 20px; color: var(--primary-600); cursor: pointer;">←</button>
+                                <h3 class="heading-3" style="margin: 0;">Payment</h3>
+                            </div>
+                            
+                            <!-- Payment Summary -->
+                            <div style="background: linear-gradient(135deg, var(--primary-500), var(--primary-700)); color: white; padding: 24px; border-radius: var(--radius-lg); margin-bottom: 24px;">
+                                <p style="opacity: 0.9; font-size: 14px;">Total Amount</p>
+                                <div style="font-size: 36px; font-weight: 700; margin: 8px 0;">$19.00</div>
+                                <p style="opacity: 0.9; font-size: 14px;">Verrazzano Bridge • Dec 27</p>
+                            </div>
+                            
+                            <!-- Saved Cards -->
+                            <h4 style="color: var(--neutral-800); margin-bottom: 16px;">Payment Method</h4>
+                            
+                            <div class="info-card" style="border: 2px solid var(--primary-500); background: var(--primary-50);">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; gap: 12px; align-items: center;">
+                                        <div style="width: 40px; height: 25px; background: linear-gradient(135deg, #1A1F71, #115DD8); border-radius: 4px;"></div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--neutral-900);">•••• 4242</div>
+                                            <div style="font-size: 12px; color: var(--neutral-500);">Expires 12/25</div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 24px; height: 24px; background: var(--primary-600); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; gap: 12px; align-items: center;">
+                                        <div style="width: 40px; height: 25px; background: linear-gradient(135deg, #5F6F94, #232B3E); border-radius: 4px;"></div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--neutral-900);">•••• 8956</div>
+                                            <div style="font-size: 12px; color: var(--neutral-500);">Expires 08/26</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button style="width: 100%; padding: 12px; border: 2px dashed var(--neutral-300); background: white; border-radius: var(--radius-md); color: var(--primary-600); font-weight: 600; cursor: pointer; margin-bottom: 24px;">
+                                + Add New Card
+                            </button>
+                            
+                            <!-- Security Badge -->
+                            <div style="background: var(--neutral-50); padding: 12px; border-radius: var(--radius-md); display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+                                <div style="font-size: 20px;">🔒</div>
+                                <div style="font-size: 12px; color: var(--neutral-600);">
+                                    Your payment information is encrypted and secure. We use industry-standard SSL encryption.
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary pulse" style="width: 100%;">
+                                Pay $19.00 Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Web Experience -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">💻</div>
+                <div>
+                    <h2 class="heading-2">Web Experience</h2>
+                    <p>Responsive desktop design with progressive enhancement</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Dashboard -->
+            <div class="desktop-frame">
+                <nav class="desktop-nav">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🚗</div>
+                        <span style="color: white; font-weight: 600; font-size: 18px;">Toll Hub</span>
+                    </div>
+                    <div class="desktop-nav-links">
+                        <a href="#" class="desktop-nav-link active">Dashboard</a>
+                        <a href="#" class="desktop-nav-link">Tolls</a>
+                        <a href="#" class="desktop-nav-link">Statements</a>
+                        <a href="#" class="desktop-nav-link">Analytics</a>
+                        <a href="#" class="desktop-nav-link">Vehicles</a>
+                    </div>
+                    <div style="display: flex; gap: 16px; align-items: center;">
+                        <button style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer;">
+                            🔔
+                        </button>
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-400), var(--primary-600)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            SC
+                        </div>
+                    </div>
+                </nav>
+                
+                <div style="padding: 32px;">
+                    <!-- Metrics Overview -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
+                        <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--neutral-200);">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <p style="color: var(--neutral-500); font-size: 14px; margin-bottom: 8px;">Total Spent</p>
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--neutral-900);">$489</div>
+                                    <p style="color: var(--success-600); font-size: 12px; margin-top: 8px;">↑ 12% from last month</p>
+                                </div>
+                                <div style="width: 48px; height: 48px; background: var(--primary-100); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                    💰
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--neutral-200);">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <p style="color: var(--neutral-500); font-size: 14px; margin-bottom: 8px;">Unpaid Tolls</p>
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--danger-600);">3</div>
+                                    <p style="color: var(--danger-600); font-size: 12px; margin-top: 8px;">$67.50 pending</p>
+                                </div>
+                                <div style="width: 48px; height: 48px; background: var(--danger-100); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                    ⚠️
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--neutral-200);">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <p style="color: var(--neutral-500); font-size: 14px; margin-bottom: 8px;">Active Vehicles</p>
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--neutral-900);">2</div>
+                                    <p style="color: var(--neutral-500); font-size: 12px; margin-top: 8px;">All verified</p>
+                                </div>
+                                <div style="width: 48px; height: 48px; background: var(--success-100); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                    🚗
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--neutral-200);">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <p style="color: var(--neutral-500); font-size: 14px; margin-bottom: 8px;">Savings</p>
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--success-600);">$45</div>
+                                    <p style="color: var(--success-600); font-size: 12px; margin-top: 8px;">With auto-pay</p>
+                                </div>
+                                <div style="width: 48px; height: 48px; background: var(--primary-100); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                    🎯
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Tolls Table -->
+                    <div style="background: white; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--neutral-200);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                            <h3 class="heading-3" style="margin: 0;">Recent Toll Events</h3>
+                            <div style="display: flex; gap: 12px;">
+                                <button style="background: white; border: 1px solid var(--neutral-200); padding: 8px 16px; border-radius: var(--radius-md); cursor: pointer;">
+                                    Export CSV
+                                </button>
+                                <button class="btn-primary">
+                                    Pay All Unpaid
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--neutral-100);">
+                                    <th style="text-align: left; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Location</th>
+                                    <th style="text-align: left; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Agency</th>
+                                    <th style="text-align: left; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Date/Time</th>
+                                    <th style="text-align: left; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Vehicle</th>
+                                    <th style="text-align: right; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Amount</th>
+                                    <th style="text-align: center; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Status</th>
+                                    <th style="text-align: center; padding: 12px; color: var(--neutral-600); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--neutral-100); transition: all var(--transition-fast); cursor: pointer;">
+                                    <td style="padding: 16px 12px; font-weight: 500;">Golden Gate Bridge</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">CA DOT</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">Dec 28, 8:45 AM</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">ABC-123</td>
+                                    <td style="padding: 16px 12px; text-align: right; font-weight: 600;">$8.75</td>
+                                    <td style="padding: 16px 12px; text-align: center;">
+                                        <span class="badge badge-success">✓ Paid</span>
+                                    </td>
+                                    <td style="padding: 16px 12px; text-align: center;">
+                                        <button style="background: none; border: none; color: var(--primary-600); cursor: pointer; font-weight: 600;">View</button>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--neutral-100); background: var(--danger-50); transition: all var(--transition-fast); cursor: pointer;">
+                                    <td style="padding: 16px 12px; font-weight: 500;">Verrazzano Bridge</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">NY MTA</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">Dec 27, 6:30 PM</td>
+                                    <td style="padding: 16px 12px; color: var(--neutral-600);">XYZ-789</td>
+                                    <td style="padding: 16px 12px; text-align: right; font-weight: 600;">$19.00</td>
+                                    <td style="padding: 16px 12px; text-align: center;">
+                                        <span class="badge badge-danger">• Unpaid</span>
+                                    </td>
+                                    <td style="padding: 16px 12px; text-align: center;">
+                                        <button class="btn-primary" style="padding: 6px 12px; font-size: 14px;">Pay Now</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Design Rationale -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">🎨</div>
+                <div>
+                    <h2 class="heading-2">Design Rationale</h2>
+                    <p>UX principles and decision-making framework</p>
+                </div>
+            </div>
+            
+            <div class="design-grid">
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">📐 Fitts's Law</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Primary actions are large, prominently placed, and have ample touch targets (minimum 44x44pt on mobile). Pay buttons are strategically positioned for thumb reach.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">🧠 Hick's Law</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Limited choices per screen (max 5 primary actions). Progressive disclosure reveals complexity only when needed. Smart defaults reduce decision fatigue.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">👁️ Visual Hierarchy</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Clear typography scale (4:3 ratio), strategic use of color for status indication, and spatial grouping guide users through information effortlessly.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">⚡ Performance</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Skeleton screens during loading, optimistic UI updates, and lazy loading ensure perceived performance under 100ms for all interactions.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">🔄 Consistency</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Platform-specific patterns (iOS HIG, Material Design 3) maintain familiar interactions while unified design tokens ensure brand coherence.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800); margin-bottom: 12px;">😊 Delight</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Micro-interactions, smooth transitions (60fps), haptic feedback, and celebratory moments create emotional connection with users.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Accessibility Features -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">♿</div>
+                <div>
+                    <h2 class="heading-2">Accessibility & Inclusivity</h2>
+                    <p>WCAG 2.1 AAA compliance with universal design principles</p>
+                </div>
+            </div>
+            
+            <div class="a11y-feature">
+                <div class="a11y-icon">👁️</div>
+                <div>
+                    <h4 style="color: var(--neutral-800);">Vision</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">4.5:1 contrast ratio minimum, scalable text up to 200%, screen reader optimized, color-blind safe palette</p>
+                </div>
+            </div>
+            
+            <div class="a11y-feature">
+                <div class="a11y-icon">🎧</div>
+                <div>
+                    <h4 style="color: var(--neutral-800);">Hearing</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Visual indicators for all audio alerts, captions for video content, vibration patterns for notifications</p>
+                </div>
+            </div>
+            
+            <div class="a11y-feature">
+                <div class="a11y-icon">🖐️</div>
+                <div>
+                    <h4 style="color: var(--neutral-800);">Motor</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Large touch targets (44x44pt min), gesture alternatives, voice control support, adjustable timing</p>
+                </div>
+            </div>
+            
+            <div class="a11y-feature">
+                <div class="a11y-icon">🧠</div>
+                <div>
+                    <h4 style="color: var(--neutral-800);">Cognitive</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Clear language (8th grade level), consistent navigation, error prevention, contextual help</p>
+                </div>
+            </div>
+            
+            <div class="a11y-feature">
+                <div class="a11y-icon">🌍</div>
+                <div>
+                    <h4 style="color: var(--neutral-800);">Internationalization</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">RTL layout support, locale-aware formatting, 40+ language support, culturally neutral imagery</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Implementation Guidelines -->
+        <section class="section animate-in">
+            <div class="section-header">
+                <div class="section-icon">🛠️</div>
+                <div>
+                    <h2 class="heading-2">Implementation Guidelines</h2>
+                    <p>Developer handoff and design system documentation</p>
+                </div>
+            </div>
+            
+            <div style="background: var(--neutral-900); color: white; padding: 24px; border-radius: var(--radius-lg); margin-bottom: 24px;">
+                <h4 style="color: white; margin-bottom: 16px;">Design Tokens</h4>
+                <pre style="font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.6;">
+{
+  "colors": {
+    "primary": "#0EA5E9",
+    "success": "#10B981",
+    "danger": "#EF4444",
+    "neutral": {
+      "50": "#FAFAFA",
+      "900": "#18181B"
+    }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
+  },
+  "typography": {
+    "scale": 1.333,
+    "baseSize": "16px"
+  }
+}</pre>
+            </div>
+            
+            <div class="design-grid">
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800);">🎯 Component Library</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Atomic design methodology with 40+ reusable components. React Native for mobile, Next.js for web.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800);">📱 Responsive Breakpoints</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">Mobile: 320-768px, Tablet: 768-1024px, Desktop: 1024px+. Fluid typography and spacing scales.</p>
+                </div>
+                
+                <div class="design-card">
+                    <h4 style="color: var(--neutral-800);">🧪 Testing Protocol</h4>
+                    <p style="color: var(--neutral-600); font-size: 14px;">A/B testing framework, usability sessions with 5 users per persona, accessibility audit tools.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Dark Mode Toggle -->
+        <div class="theme-toggle">
+            🌙
+        </div>
+    </div>
+    
+    <script>
+        // Add interactivity
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+        
+        // Animate journey progress
+        setTimeout(() => {
+            document.querySelector('.journey-connector-progress').style.width = '80%';
+        }, 1000);
+    </script>
+</body>
+</html>

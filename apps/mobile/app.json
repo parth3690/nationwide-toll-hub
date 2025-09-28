@@ -1,0 +1,85 @@
+{
+  "name": "TollHub",
+  "displayName": "Nationwide Toll Hub",
+  "version": "1.0.0",
+  "description": "Unified toll management platform for multiple agencies",
+  "orientation": "portrait",
+  "icon": "./assets/icon.png",
+  "userInterfaceStyle": "automatic",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#1E3A8A"
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.nationwidetollhub.app",
+    "buildNumber": "1.0.0",
+    "infoPlist": {
+      "NSCameraUsageDescription": "This app needs access to camera to capture toll evidence and documents.",
+      "NSPhotoLibraryUsageDescription": "This app needs access to photo library to select toll evidence and documents.",
+      "NSLocationWhenInUseUsageDescription": "This app needs location access to show nearby toll facilities.",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs location access to show nearby toll facilities.",
+      "NSMicrophoneUsageDescription": "This app needs microphone access for voice notes on toll disputes.",
+      "NSFaceIDUsageDescription": "This app uses Face ID for secure authentication.",
+      "NSContactsUsageDescription": "This app needs access to contacts to share toll information.",
+      "CFBundleURLTypes": [
+        {
+          "CFBundleURLName": "tollhub",
+          "CFBundleURLSchemes": ["tollhub"]
+        }
+      ]
+    },
+    "associatedDomains": ["applinks:tollhub.com", "applinks:www.tollhub.com"]
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#1E3A8A"
+    },
+    "package": "com.nationwidetollhub.app",
+    "versionCode": 1,
+    "permissions": [
+      "android.permission.CAMERA",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.READ_CONTACTS",
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.VIBRATE",
+      "android.permission.WAKE_LOCK",
+      "android.permission.RECEIVE_BOOT_COMPLETED"
+    ],
+    "intentFilters": [
+      {
+        "action": "VIEW",
+        "autoVerify": true,
+        "data": [
+          {
+            "scheme": "https",
+            "host": "tollhub.com"
+          },
+          {
+            "scheme": "https",
+            "host": "www.tollhub.com"
+          }
+        ],
+        "category": ["BROWSABLE", "DEFAULT"]
+      }
+    ]
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "extra": {
+    "eas": {
+      "projectId": "your-project-id-here"
+    }
+  }
+}

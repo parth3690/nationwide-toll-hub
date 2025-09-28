@@ -1,0 +1,30 @@
+{
+  "name": "@toll-hub/database",
+  "version": "1.0.0",
+  "description": "Database service for Toll Hub with migrations and seeding",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "migrate": "node dist/migrate.js",
+    "migrate:create": "node dist/migrate-create.js",
+    "seed": "node dist/seed.js",
+    "reset": "npm run migrate && npm run seed",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@toll-hub/shared": "file:../../packages/shared",
+    "pg": "^8.11.3",
+    "knex": "^3.0.1",
+    "dotenv": "^16.3.1",
+    "bcrypt": "^5.1.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.9",
+    "@types/bcrypt": "^5.0.2",
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.0"
+  }
+}

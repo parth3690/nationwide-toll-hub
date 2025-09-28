@@ -1,0 +1,470 @@
+_format_version: "3.0"
+
+# Kong API Gateway Configuration
+# Provides centralized API management with:
+# - Rate limiting
+# - Authentication
+# - Load balancing
+# - Request/response transformation
+# - Monitoring and logging
+
+services:
+  # Authentication Service
+  - name: auth-service
+    url: http://auth-service:3000
+    routes:
+      - name: auth-routes
+        paths:
+          - /api/v1/auth
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 100
+              hour: 1000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: request-transformer
+            config:
+              add:
+                headers:
+                  - "X-Forwarded-For:$(headers.x-forwarded-for)"
+                  - "X-Real-IP:$(headers.x-real-ip)"
+          - name: response-transformer
+            config:
+              add:
+                headers:
+                  - "X-Response-Time:$(latency_ms)"
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+  # User Service
+  - name: user-service
+    url: http://user-service:3001
+    routes:
+      - name: user-routes
+        paths:
+          - /api/v1/users
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+        plugins:
+          - name: jwt
+            config:
+              secret_is_base64: false
+              key_claim_name: sub
+              claims_to_verify:
+                - exp
+                - iat
+              anonymous: null
+          - name: rate-limiting
+            config:
+              minute: 200
+              hour: 2000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: request-transformer
+            config:
+              add:
+                headers:
+                  - "X-Forwarded-For:$(headers.x-forwarded-for)"
+                  - "X-Real-IP:$(headers.x-real-ip)"
+          - name: response-transformer
+            config:
+              add:
+                headers:
+                  - "X-Response-Time:$(latency_ms)"
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+  # Toll Service
+  - name: toll-service
+    url: http://toll-service:3002
+    routes:
+      - name: toll-routes
+        paths:
+          - /api/v1/tolls
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+        plugins:
+          - name: jwt
+            config:
+              secret_is_base64: false
+              key_claim_name: sub
+              claims_to_verify:
+                - exp
+                - iat
+              anonymous: null
+          - name: rate-limiting
+            config:
+              minute: 300
+              hour: 3000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: request-transformer
+            config:
+              add:
+                headers:
+                  - "X-Forwarded-For:$(headers.x-forwarded-for)"
+                  - "X-Real-IP:$(headers.x-real-ip)"
+          - name: response-transformer
+            config:
+              add:
+                headers:
+                  - "X-Response-Time:$(latency_ms)"
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+  # Statement Service
+  - name: statement-service
+    url: http://statement-service:3003
+    routes:
+      - name: statement-routes
+        paths:
+          - /api/v1/statements
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+        plugins:
+          - name: jwt
+            config:
+              secret_is_base64: false
+              key_claim_name: sub
+              claims_to_verify:
+                - exp
+                - iat
+              anonymous: null
+          - name: rate-limiting
+            config:
+              minute: 100
+              hour: 1000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: request-transformer
+            config:
+              add:
+                headers:
+                  - "X-Forwarded-For:$(headers.x-forwarded-for)"
+                  - "X-Real-IP:$(headers.x-real-ip)"
+          - name: response-transformer
+            config:
+              add:
+                headers:
+                  - "X-Response-Time:$(latency_ms)"
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+  # Agency Service
+  - name: agency-service
+    url: http://agency-service:3004
+    routes:
+      - name: agency-routes
+        paths:
+          - /api/v1/agencies
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+        plugins:
+          - name: jwt
+            config:
+              secret_is_base64: false
+              key_claim_name: sub
+              claims_to_verify:
+                - exp
+                - iat
+              anonymous: null
+          - name: rate-limiting
+            config:
+              minute: 200
+              hour: 2000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: request-transformer
+            config:
+              add:
+                headers:
+                  - "X-Forwarded-For:$(headers.x-forwarded-for)"
+                  - "X-Real-IP:$(headers.x-real-ip)"
+          - name: response-transformer
+            config:
+              add:
+                headers:
+                  - "X-Response-Time:$(latency_ms)"
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+  # Web Application
+  - name: web-app
+    url: http://web-app:3005
+    routes:
+      - name: web-routes
+        paths:
+          - /
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+          - OPTIONS
+        plugins:
+          - name: cors
+            config:
+              origins:
+                - http://localhost:3000
+                - http://localhost:3001
+                - http://localhost:3005
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Version
+                - Content-Length
+                - Content-MD5
+                - Content-Type
+                - Date
+                - Authorization
+                - X-Requested-With
+              credentials: true
+              max_age: 3600
+          - name: rate-limiting
+            config:
+              minute: 1000
+              hour: 10000
+              policy: redis
+              redis_host: redis
+              redis_port: 6379
+          - name: prometheus
+            config:
+              per_consumer: true
+              status_code_metrics: true
+              latency_metrics: true
+              bandwidth_metrics: true
+              upstream_health_metrics: true
+
+# Global plugins
+plugins:
+  - name: prometheus
+    config:
+      per_consumer: true
+      status_code_metrics: true
+      latency_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: true
+  - name: cors
+    config:
+      origins:
+        - http://localhost:3000
+        - http://localhost:3001
+        - http://localhost:3005
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+      headers:
+        - Accept
+        - Accept-Version
+        - Content-Length
+        - Content-MD5
+        - Content-Type
+        - Date
+        - Authorization
+        - X-Requested-With
+      credentials: true
+      max_age: 3600
+  - name: rate-limiting
+    config:
+      minute: 1000
+      hour: 10000
+      policy: redis
+      redis_host: redis
+      redis_port: 6379
+  - name: request-transformer
+    config:
+      add:
+        headers:
+          - "X-Forwarded-For:$(headers.x-forwarded-for)"
+          - "X-Real-IP:$(headers.x-real-ip)"
+  - name: response-transformer
+    config:
+      add:
+        headers:
+          - "X-Response-Time:$(latency_ms)"
+          - "X-Kong-Upstream-Latency:$(upstream_latency)"
+          - "X-Kong-Proxy-Latency:$(proxy_latency)"
